@@ -6,33 +6,62 @@ This data migration is part of a wider migration strategy document in [Confluenc
 
 The following steps should be executed in order to ensure data consistency.
 
-### Extract completed payment requests from Transformation Layer
+### Extract inbound payment requests from Payment Filter
 
-1. Connect to Production Transformation Layer SQL Server with SSMS
+1. Connect to Production Payment Filter SQL Server with SSMS
 
-2. Execute [transformation-layer/get-completed-headers.sql](transformation-layer/get-completed-headers.sql)
+1. Execute [extract-bps-headers.sql](payment-filter/extract-bps-headers.sql)
 
-3. Save results as CSV with name `tempHeaders.csv`
+1. Save results as CSV with name `bpsHeaders.csv`
 
-4. Execute [transformation-layer/get-completed-invoice-lines.sql](transformation-layer/get-completed-invoice-lines.sql)
+1. Execute [extract-bps-lines.sql](payment-filter/extract-bps-lines.sql)
 
-5. Save results as CSV with name `tempLines.csv`
+1. Save results as CSV with name `bpsLines.csv`
 
-### Extract holds from tactical payment service
+1. Execute [extract-cs-headers.sql](payment-filter/extract-cs-headers.sql)
 
-6. Connect to Production tactical payment SQL Server with SSMS
+1. Save results as CSV with name `csHeaders.csv`
 
-7. Execute [tactical-payments/get-hold-headers.sql](tactical-payments/get-hold-headers.sql)
+1. Execute [extract-cs-lines.sql](payment-filter/extract-cs-lines.sql)
 
-8. Save results as CSV with name `tempHoldHeaders.csv`
+1. Save results as CSV with name `csLines.csv`
 
-9.  Execute [tactical-payments/get-hold-invoice-lines.sql](tactical-payments/get-hold-invoice-lines.sql)
+### Extract outbound payment requests from Payment Filter
 
-10. Save results as CSV with name `tempHoldLines.csv`
+1. Connect to Production Payment Filter SQL Server with SSMS
 
-11. Execute [tactical-payments/get-holds.sql](tactical-payments/get-holds.sql)
+1. Execute [extract-bps-completed-headers.sql](payment-filter/extract-bps-completed-headers.sql)
 
-12. Save results as CSV with name `tempHolds.csv`
+1. Save results as CSV with name `bpsCompletedHeaders.csv`
+
+1. Execute [extract-bps-completed-lines.sql](payment-filter/extract-bps-completed-lines.sql)
+
+1. Save results as CSV with name `bpsCompletedLines.csv`
+
+1. Execute [extract-cs-completed-headers.sql](payment-filter/extract-cs-completed-headers.sql)
+
+1. Save results as CSV with name `csCompletedHeaders.csv`
+
+1. Execute [extract-cs-completed-lines.sql](payment-filter/extract-cs-completed-lines.sql)
+
+1. Save results as CSV with name `csCompletedLines.csv`
+
+### Extract holds from Payment Filter
+
+1. Connect to Production Payment Filter SQL Server with SSMS
+
+1. Execute [extract-holds.sql](payment-filter/extract-holds.sql)
+
+1. Save results as CSV with name `holdsData.csv`
+
+### Extract debt data from Payment Filter
+
+1. Connect to Production Payment Filter SQL Server with SSMS
+
+1. Execute [extract-debt.sql](payment-filter/extract-debt.sql)
+
+1. Save results as CSV with name `debtData.csv`
+
 
 ### Convert CSV files to PostgreSQL insert scripts
 13. Clone repository https://github.com/johnwatson484/csv-to-postgresql with:
@@ -54,7 +83,7 @@ The following steps should be executed in order to ensure data consistency.
 
 ### Build return file for settlement data
 
-18. Request settlement report from CPAT covering all SFI pilot payments
+18. Request settlement report from CPAT covering all BPS, CS and FDMR pilot payments
 
 . Clone repository https://github.com/defra/ffc-pay-settlement-to-return-file with:
      ```
