@@ -1,6 +1,5 @@
-DROP TABLE "tempHeaders";
-DROP TABLE "tempLines";
-DROP TABLE "tempHoldHeaders";
-DROP TABLE "tempHoldLines";
+DROP TABLE "tempPaymentRequests"
+DROP TABLE "tempInvoiceLines";
+DROP TABLE "tempCompletedPaymentRequests";
+DROP TABLE "tempInvoiceLines";
 
-DROP TABLE "tempHolds";
