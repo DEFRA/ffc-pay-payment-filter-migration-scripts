@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS public."tempPaymentRequests"
 CREATE TABLE IF NOT EXISTS public."tempInvoiceLines"
 (
     "migrationId" character varying(50) COLLATE pg_catalog."default",
-    "inboundInvoiceNumber" character varying(30) COLLATE pg_catalog."default",
+    "invoiceNumber" character varying(30) COLLATE pg_catalog."default",
     "accountCode" character varying(6) COLLATE pg_catalog."default",
     "fundCode" character varying(6) COLLATE pg_catalog."default",
     description character varying(255) COLLATE pg_catalog."default",
@@ -45,6 +45,7 @@ CREATE TABLE IF NOT EXISTS public."tempInvoiceLines"
     "schemeCode" character varying(10) COLLATE pg_catalog."default",
     convergence boolean DEFAULT false,
     "deliveryBody" character varying(4) COLLATE pg_catalog."default",
+    "schemeCode2" character varying(10) COLLATE pg_catalog."default",
     "agreementNumber" character varying(255) COLLATE pg_catalog."default",
     "marketingYear" integer,
     "stateAid" boolean DEFAULT false
@@ -70,8 +71,8 @@ CREATE TABLE IF NOT EXISTS public."tempCompletedPaymentRequests"
     acknowledged timestamp without time zone,
     "marketingYear" integer,
     "debtType" character varying(3) COLLATE pg_catalog."default",
-    "recoveryDate" character varying(10) COLLATE pg_catalog."default",
-    "originalSettlementDate" character varying(10) COLLATE pg_catalog."default",
+    "recoveryDate" timestamp without time zone,
+    "originalSettlementDate" timestamp without time zone,
     "originalInvoiceNumber" character varying(30) COLLATE pg_catalog."default",
     "invoiceCorrectionReference" character varying(30) COLLATE pg_catalog."default",
     submitted timestamp without time zone,
@@ -100,10 +101,19 @@ CREATE TABLE IF NOT EXISTS public."tempCompletedInvoiceLines"
     "fundCode" character varying(6) COLLATE pg_catalog."default",
     description character varying(255) COLLATE pg_catalog."default",
     value integer,
-    "schemeCode" character varying(10) COLLATE pg_catalog."default",
+    "schemeCode2" character varying(10) COLLATE pg_catalog."default",
     convergence boolean,
     "deliveryBody" character varying(4) COLLATE pg_catalog."default",
+    "schemeCode" character varying(10) COLLATE pg_catalog."default",
     "agreementNumber" character varying(255) COLLATE pg_catalog."default",
     "marketingYear" integer,
     "stateAid" boolean
+);
+
+CREATE TABLE IF NOT EXISTS public."tempHoldData"
+(
+    frn bigint,
+    "holdCategoryId" integer,
+    added timestamp without time zone,
+    closed timestamp without time zone
 );

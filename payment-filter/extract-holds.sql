@@ -8,8 +8,6 @@ CREATE TABLE #PHMigrationHoldCategories (
 
 INSERT INTO #PHMigrationHoldCategories
 VALUES
-
-
 (56,5,'DAX rejection',NULL),
 (57,5,'Awaiting debt enrichment',NULL),
 (58,5,'Ex-gratia',NULL),
@@ -86,6 +84,7 @@ SELECT
   INNER JOIN #PHMigrationHoldCategories P
   ON R.id = P.reasonId
   WHERE removed = 0
-  -- AND P.schemeId IN (5,6,7) -- if not migrating all schemes at same time
+  -- AND P.schemeId = 5 -- if only CS
+  -- AND P.schemeId IN (6,7) -- if BPS and FDMR
 
 DROP TABLE #PHMigrationHoldCategories
