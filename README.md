@@ -263,6 +263,8 @@ In the event the migration needs to be reversed, the following scripts can be ru
 - [ffc-pay-request-editor](ffc-pay-request-editor/rollback.sql)
 - [ffc-pay-processing](ffc-pay-processing/rollback.sql)
 
+> DO NOT run `reset.sql` scripts as these will delete all data from the database.  For local development scenarios only.
+
 ## Clean up
 
 > To be optionally performed by CCoE if approval given by Payments Team.  It is likely this will be through a subsequent change once confirmed the migration is complete for the target environment.
