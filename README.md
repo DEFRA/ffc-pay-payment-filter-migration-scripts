@@ -10,27 +10,13 @@ If only Basic Payment Scheme (BPS) or Countryside Stewardship (CS) migration is 
 
 > BPS and FDMR must be migrated together due to Payment Filter data structures.  BPS steps include FDMR.
 
-### Disable Payment Filter processing
+## Pre-requisites
 
 > To be performed by Enterprise Solutions Team
 
-1. Connect to Production Payment Filter SQL Server with SSMS
+Payment Filter processing has been disabled for schemes to be migrated.  Assurance given that no further payments will be processed for schemes to be migrated.
 
-TODO: disable inbound, enrichment and load.  Amend BizTalk polling for scheme specifics.
-
-### Disable Payment Filter BizTalk routing
-
-> To be performed by Enterprise Solutions Team
-
-1. Connect to Production BizTalk Server
-
-1. Open BizTalk Server Administration Console
-
-1. Navigate to `BizTalk Server Administration` > `BizTalk Group` > `Applications` > `RPA.Finance.PaymentFilter.PaymentProcessor`
-
-1. Disable all receive locations
-
-1. Confirm all BizTalk processing activity has completed
+This will likely involve EST updating BizTalk polling statements in Payment Batch Processor, Settlement Request Editor, Quality Check, Cross Border Payment Engine and Exceptions followed by an agreed period of time to ensure no further payments are processed.
 
 ### Extract inbound payment requests from Payment Filter
 
@@ -133,6 +119,8 @@ TODO: disable inbound, enrichment and load.  Amend BizTalk polling for scheme sp
 
 1. Connect to target FFC Azure PostgreSQL server using client of choice
 
+1. Connect to `ffc-pay-processing-<ENV>` database
+
 1. Execute [ffc-pay-processing/create-temp-tables.sql](ffc-pay-processing/create-temp-tables.sql)
 
 1. Connect to target FFC Azure PostgreSQL server using `psql`.  Enter password when prompted.
@@ -187,11 +175,17 @@ TODO: disable inbound, enrichment and load.  Amend BizTalk polling for scheme sp
 
 1. Connect to target FFC Azure PostgreSQL server using client of choice
 
+1. Connect to `ffc-pay-processing-<ENV>` database
+
 1. Execute [ffc-pay-processing/load-payments.sql](ffc-pay-processing/load-payments.sql)
 
-### Update Request Editor
+### Load debt data
+
+> To be performed by CCoE.  Will need to use `psql` client to upload data due to volume of data.
 
 1. Connect to target FFC Azure PostgreSQL server using client of choice
+
+1. Connect to `ffc-pay-request-editor-<ENV>` database
 
 1. Execute [ffc-pay-request-editor/create-temp-tables.sql](ffc-pay-request-editor/create-temp-tables.sql)
 
@@ -205,13 +199,17 @@ TODO: disable inbound, enrichment and load.  Amend BizTalk polling for scheme sp
       \copy "tempDebtData" FROM '/path/to/debtData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
-TODO: Add data upload
+1. Connect to target FFC Azure PostgreSQL server using client of choice
 
-1. Execute [ffc-pay-request-editor/delete-temp-tables.sql](ffc-pay-request-editor/delete-temp-tables.sql)
+1. Connect to `ffc-pay-request-editor-<ENV>` database
+
+1. Execute [ffc-pay-request-editor/load-debt-data.sql](ffc-pay-request-editor/load-debt-data.sql)
 
 ### Build return file for settlement data
 
-1. Request settlement report from CPAT covering all BPS, CS and FDMR pilot payments
+> To be performed by Payments Team
+
+1. Request settlement report from CPAT covering all BPS, CS and FDMR payments
 
 . Clone repository https://github.com/defra/ffc-pay-settlement-to-return-file with:
      ```
@@ -232,15 +230,49 @@ TODO: Add data upload
 
 ### Process return file
 
-50. Navigate to Azure payment blob storage account
+> To be performed by CCoE
 
-51. Upload return file created at `22` to `dax` container in `inbound` virtual directory
+1. Navigate to Azure payment blob storage account
 
-52. Within 1 minute, file should be consumed by `ffc-pay-responses` Kubernetes pod and moved to `archive` subdirectory
+1. Upload return file created earlier to `dax` container in `inbound` virtual directory
+
+1. Within 1 minute, file should be consumed by `ffc-pay-responses` Kubernetes pod and moved to `archive` subdirectory
+
+### Schedule processing
+
+> To be performed by CCoE.
+
+1. Connect to target FFC Azure PostgreSQL server using client of choice
+
+1. Connect to `ffc-pay-processing-<ENV>` database
+
+1. Execute [ffc-pay-processing/load-schedule.sql](ffc-pay-processing/load-schedule.sql)
+
+## Expected outcomes
+
+1. Any BPS, CS or FDMR payment request that had completed payment processing but not sent to the Transformation Layer should be sent from `ffc-pay-processing` to `ffc-pay-submission`.
+
+1. Any BPS, CS or FDMR payment request that had a blocking hold should be blocked by a hold in `ffc-pay-processing`.
+
+1. Any BPS, CS or FDMR payment request that was held in the Settlement Request Editor or Quality Check application should be sent from `ffc-pay-processing` to `ffc-pay-request-editor`.
 
 ## Reset databases
 
-In the event the migration needs to be reversed or to support creating a "clean" environment, the following scripts can be run.
+In the event the migration needs to be reversed, the following scripts can be run.
 
-- [ffc-pay-processing](ffc-pay-processing/reset.sql)
-- [ffc-pay-request-editor](ffc-pay-request-editor/reset.sql)
+- [ffc-pay-request-editor](ffc-pay-request-editor/rollback.sql)
+- [ffc-pay-processing](ffc-pay-processing/rollback.sql)
+
+## Clean up
+
+> To be optionally performed by CCoE if approval given by Payments Team.  It is likely this will be through a subsequent change once confirmed the migration is complete for the target environment.
+
+1. Connect to target FFC Azure PostgreSQL server using client of choice
+
+1. Connect to `ffc-pay-processing-<ENV>` database
+
+1. Execute [ffc-pay-processing/delete-temp-tables.sql](ffc-pay-processing/delete-temp-tables.sql)
+
+1. Connect to `ffc-pay-request-editor-<ENV>` database
+
+1. Execute [ffc-pay-request-editor/delete-temp-tables.sql](ffc-pay-request-editor/delete-temp-tables.sql)

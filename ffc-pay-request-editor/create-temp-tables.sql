@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS public."tempDebtData"
     reference character varying(50) COLLATE pg_catalog."default",
     "netValue" numeric,
     "debtType" character varying(3) COLLATE pg_catalog."default",
-    "recoveryDate" character varying(10) COLLATE pg_catalog."default",
+    "recoveryDate" timestamp without time zone,
     "attachedDate" timestamp without time zone,
     "createdDate" timestamp without time zone,
     "createdBy" character varying(50) COLLATE pg_catalog."default",
