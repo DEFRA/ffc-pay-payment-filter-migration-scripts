@@ -125,7 +125,7 @@ TODO: disable inbound, enrichment and load.  Amend BizTalk polling for scheme sp
 
 1. Verify content of CSV files is correct
 
-### Update Payment Processing
+### Load Payments
 
 > To be performed by CCoE.  Will need to use `psql` client to upload data due to volume of data.
 
@@ -185,9 +185,9 @@ TODO: disable inbound, enrichment and load.  Amend BizTalk polling for scheme sp
       \copy "tempHolds" FROM '/path/to/holdsData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
-TODO: Add data upload
+1. Connect to target FFC Azure PostgreSQL server using client of choice
 
-1. Execute [ffc-pay-processing/delete-temp-tables.sql](ffc-pay-processing/delete-temp-tables.sql)
+1. Execute [ffc-pay-processing/load-payments.sql](ffc-pay-processing/load-payments.sql)
 
 ### Update Request Editor
 

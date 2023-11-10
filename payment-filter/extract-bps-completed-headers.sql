@@ -36,7 +36,7 @@ SELECT
 	   NULL eventDate,
 	   NULL vendor,
 	   NULL trader,
-	   NULL claimDate   
+	   NULL claimDate
   FROM [RPA.Finance.PaymentFilter.PaymentBatchProcessor (Production)].[Working].[SitiAgri AP Headers] H
   INNER JOIN [RPA.Finance.PaymentFilter.PaymentBatchProcessor (Production)].[Working].[SitiAgri AP Controls] C
   ON H.[File ID] = C.[File ID]
