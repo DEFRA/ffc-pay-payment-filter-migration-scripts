@@ -71,8 +71,7 @@ SELECT
 FROM "tempPaymentRequests"
 LEFT JOIN "paymentRequests"
   ON "tempPaymentRequests"."migrationId" = "paymentRequests"."migrationId"
-WHERE "paymentRequests"."migrationId" IS NULL
-  AND "tempPaymentRequests"."marketingYear" IS NOT NULL;
+WHERE "paymentRequests"."migrationId" IS NULL;
 
 INSERT INTO "invoiceLines"(
   "paymentRequestId",
@@ -105,7 +104,8 @@ INNER JOIN "paymentRequests"
   ON "tempInvoiceLines"."migrationId" = "paymentRequests"."migrationId"
 LEFT JOIN "invoiceLines"
   ON "paymentRequests"."paymentRequestId" = "invoiceLines"."paymentRequestId"
-WHERE "invoiceLines"."paymentRequestId" IS NULL;
+WHERE "invoiceLines"."paymentRequestId" IS NULL
+  AND "tempInvoiceLines"."description" NOT LIKE 'N00%';
 
 INSERT INTO "completedPaymentRequests"(
   "paymentRequestId",
@@ -223,7 +223,8 @@ INNER JOIN "completedPaymentRequests"
   ON "tempCompletedInvoiceLines"."migrationId" = "completedPaymentRequests"."migrationId"
 LEFT JOIN "completedInvoiceLines"
   ON "completedPaymentRequests"."completedPaymentRequestId" = "completedInvoiceLines"."completedPaymentRequestId"
-WHERE "completedInvoiceLines"."completedPaymentRequestId" IS NULL;
+WHERE "completedInvoiceLines"."completedPaymentRequestId" IS NULL
+  AND "tempCompletedInvoiceLines"."description" NOT LIKE 'N00%';
 
 INSERT INTO holds(
   frn,
