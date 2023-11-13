@@ -179,6 +179,8 @@ This will likely involve EST updating BizTalk polling statements in Payment Batc
 
 1. Execute [ffc-pay-processing/load-payments.sql](ffc-pay-processing/load-payments.sql)
 
+1. Execute [ffc-pay-processing/fix-anomalies.sql](ffc-pay-processing/fix-anomalies.sql)
+
 ### Load debt data
 
 > To be performed by CCoE.  Will need to use `psql` client to upload data due to volume of data.
