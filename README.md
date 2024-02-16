@@ -12,11 +12,19 @@ If only Basic Payment Scheme (BPS) or Countryside Stewardship (CS) migration is 
 
 ## Pre-requisites
 
-> To be performed by Enterprise Solutions Team
+> To be performed by Enterprise Solutions Team & CapGemini Biztalk support
 
 Payment Filter processing has been disabled for schemes to be migrated.  Assurance given that no further payments will be processed for schemes to be migrated.
 
-This will likely involve EST updating BizTalk polling statements in Payment Batch Processor, Settlement Request Editor, Quality Check, Cross Border Payment Engine and Exceptions followed by an agreed period of time to ensure no further payments are processed.
+This will likely involve CapGemini updating BizTalk polling statements in Payment Batch Processor, Settlement Request Editor, Quality Check, Cross Border Payment Engine and Exceptions followed by an agreed period of time to ensure no further payments are processed.
+
+NB, when running these scripts on the Transformation Layer, please ensure that the below Query Options are set within the Results - Grid section:
+
+1. Include column headers when copying or saving the results
+
+1. Quote strings containing list separators when saving .csv results
+
+This is required as failing to apply this means that we are likely to face issues with the import scripts.
 
 ### Extract inbound payment requests from Payment Filter
 
