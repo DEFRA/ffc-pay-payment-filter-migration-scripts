@@ -178,7 +178,7 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Execute
     ```
-      \copy "tempHolds" FROM '/path/to/holdsData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "tempHoldData" FROM '/path/to/holdsData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Connect to target FFC Azure PostgreSQL server using client of choice
