@@ -246,7 +246,15 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Upload return file created earlier to `dax` container in `inbound` virtual directory
 
-1. Within 1 minute, file should be consumed by `ffc-pay-responses` Kubernetes pod and moved to `archive` subdirectory
+1. File should be consumed by `ffc-pay-responses` Kubernetes pod and moved to `archive` subdirectory
+
+### Confirm return file processed
+
+> To be performed by Payments Team
+
+1. View logs for `ffc-pay-responses` Kubernetes pod to confirm return file processed successfully without error
+
+1. Confirm return file has moved to `dax` container in the `archive` sub directory in blob storage
 
 ### Schedule processing
 
