@@ -78,7 +78,7 @@ SELECT
   "paymentRequests"."migrationId"
 FROM "paymentRequests"
 LEFT JOIN "completedPaymentRequests"
-  ON "tempCompletedPaymentRequests"."migrationId" = "paymentRequests"."migrationId"
+  ON "completedPaymentRequests"."migrationId" = "paymentRequests"."migrationId"
 WHERE "completedPaymentRequests"."migrationId" IS NULL
   AND "paymentRequests"."migrationId" IN ('BPS_218748', 'BPS_228840');
 
