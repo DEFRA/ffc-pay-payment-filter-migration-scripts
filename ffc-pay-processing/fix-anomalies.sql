@@ -107,10 +107,12 @@ SELECT
   "invoiceLines"."marketingYear",
   "invoiceLines"."stateAid"
 FROM "invoiceLines"
+INNER JOIN "paymentRequests"
+  ON "invoiceLines"."paymentRequestId" = "paymentRequests"."paymentRequestId"
 INNER JOIN "completedPaymentRequests"
-  ON "invoiceLines"."migrationId" = "completedPaymentRequests"."migrationId"
+  ON "paymentRequests"."paymentRequestId" = "completedPaymentRequests"."paymentRequestId"
 LEFT JOIN "completedInvoiceLines"
   ON "completedPaymentRequests"."completedPaymentRequestId" = "completedInvoiceLines"."completedPaymentRequestId"
 WHERE "completedInvoiceLines"."completedPaymentRequestId" IS NULL
   AND "invoiceLines"."description" NOT LIKE 'N00%'
-  AND "invoiceLines"."migrationId" IN ('BPS_218748', 'BPS_228840');
+  AND "paymentRequests"."migrationId" IN ('BPS_218748', 'BPS_228840');
