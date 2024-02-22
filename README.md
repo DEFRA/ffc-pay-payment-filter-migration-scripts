@@ -242,7 +242,7 @@ This is required as failing to apply this means that we are likely to face issue
 
 > To be performed by CCoE
 
-1. Navigate to Azure payment blob storage account
+1. Navigate to Azure payment blob storage account `<ENV>ffcpayst1001`
 
 1. Upload return file created earlier to `dax` container in `inbound` virtual directory
 
