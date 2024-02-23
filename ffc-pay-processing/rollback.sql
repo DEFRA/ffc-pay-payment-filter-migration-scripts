@@ -1,5 +1,3 @@
-BEGIN;
-
 DELETE FROM "outbox"
 USING "completedPaymentRequests"
 WHERE "outbox"."completedPaymentRequestId" = "completedPaymentRequests"."completedPaymentRequestId"
@@ -25,5 +23,3 @@ AND "paymentRequests"."migrationId" IS NOT NULL;
 DELETE FROM "paymentRequests" WHERE "migratedId" IS NOT NULL;
 
 DELETE FROM "holds" WHERE "migrationId" IS NOT NULL;
-
-COMMIT;

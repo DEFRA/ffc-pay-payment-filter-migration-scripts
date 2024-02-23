@@ -1,5 +1,3 @@
-BEGIN;
-
 INSERT INTO public."debtData"(
   "schemeId",
   frn,
@@ -31,5 +29,3 @@ LEFT JOIN public."debtData"
   AND "tempDebtData"."schemeId" = "debtData"."schemeId"
   AND "tempDebtData"."netValue" = "debtData"."netValue"
 WHERE "debtData".reference IS NULL;
-
-COMMIT;

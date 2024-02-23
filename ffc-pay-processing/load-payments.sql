@@ -1,5 +1,3 @@
-BEGIN;
-
 INSERT INTO "paymentRequests"(
   "schemeId",
   "sourceSystem",
@@ -248,4 +246,3 @@ LEFT JOIN (
   AND "tempHoldData"."holdCategoryId" = "currentHolds"."holdCategoryId"
 WHERE "currentHolds".frn IS NULL;
 
-COMMIT;

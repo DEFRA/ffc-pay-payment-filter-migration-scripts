@@ -1,5 +1,3 @@
-BEGIN;
-
 INSERT INTO "outbox"(
 	"completedPaymentRequestId")
 SELECT "completedPaymentRequests"."completedPaymentRequestId"
@@ -25,4 +23,3 @@ WHERE "schedule"."paymentRequestId" IS NULL
   AND "paymentRequests"."migrated" IS NOT NULL
   AND "completedPaymentRequests"."paymentRequestId" IS NULL;
 
-COMMIT;
