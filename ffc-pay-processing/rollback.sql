@@ -20,6 +20,6 @@ USING "paymentRequests"
 WHERE "invoiceLines"."paymentRequestId" = "paymentRequests"."paymentRequestId"
 AND "paymentRequests"."migrationId" IS NOT NULL;
 
-DELETE FROM "paymentRequests" WHERE "migratedId" IS NOT NULL;
+DELETE FROM "paymentRequests" WHERE "migrationId" IS NOT NULL;
 
 DELETE FROM "holds" WHERE "migrationId" IS NOT NULL;
