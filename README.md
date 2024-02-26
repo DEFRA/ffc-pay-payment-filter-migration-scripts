@@ -203,7 +203,7 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Connect to target FFC Azure PostgreSQL server using `psql`
    ```
-    psql -h <host> -U <username> -d ffc-pay-processing-<env>
+    psql -h <host> -U <username> -d ffc-pay-request-editor-<env>
    ```
 
 1. Execute 
@@ -217,46 +217,55 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Execute [ffc-pay-request-editor/load-debt-data.sql](ffc-pay-request-editor/load-debt-data.sql)
 
-### Build return file for settlement data
+### Build file for settlement data
 
 > To be performed by Payments Team
 
 1. Request settlement report from CPAT covering all BPS, CS and FDMR payments
 
-. Clone repository https://github.com/defra/ffc-pay-settlement-to-return-file with:
-     ```
-     git clone https://github.com/ffc-pay-settlement-to-return-file.git
-     ```
+1. Convert received settlement reports into a CSV format by removing headers, saving as csv.
 
-1. Create required directories in root of repository with:
+### Process settlement data
+
+> To be performed by CCoE. Will need to use `psql` client to upload data due to volume of data.
+
+1. Connect to target FFC Azure PostgreSQL server using client of choice
+
+1. Connect to `ffc-pay-processing-<ENV>` database
+
+1. Execute [ffc-pay-processing/create-temp-settlement-data.sql](ffc-pay-processing/create-temp-settlement-data.sql)
+
+1. Connect to target FFC Azure PostgreSQL server using `psql`
+   ```
+    psql -h <host> -U <username> -d ffc-pay-processing-<env>
+   ```
+
+1. Execute 
     ```
-    mkdir -p ./input
-    mkdir -p ./output
+      \copy "tempSettlementData" FROM '/path/to/bpsSettlementData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
-1. Copy all CPAT report files to `input` directory
+1. Execute 
+    ```
+      \copy "tempSettlementData" FROM '/path/to/fdmrSettlementData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+    ```
 
-1. Run `npm run start` to run with Node.js or `./scripts/start -b` to run with Docker
-   
-1. Return file will be output to the `output` directory
+1. Execute 
+    ```
+      \copy "tempSettlementData" FROM '/path/to/csSettlementData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+    ```
 
-### Process return file
+1. Connect to target FFC Azure PostgreSQL server using client of choice
 
-> To be performed by CCoE
+1. Connect to `ffc-pay-processing-<ENV>` database
 
-1. Navigate to Azure payment blob storage account `<ENV>ffcpayst1001`
+1. Execute [ffc-pay-processing/update-settlement-data.sql](ffc-pay-processing/update-settlement-data.sql)
 
-1. Upload return file created earlier to `dax` container in `inbound` virtual directory
+### Confirm settlement data updated
 
-1. File should be consumed by `ffc-pay-responses` Kubernetes pod and moved to `archive` subdirectory
+> To be performed by CCoE/Payments Team
 
-### Confirm return file processed
-
-> To be performed by Payments Team
-
-1. View logs for `ffc-pay-responses` Kubernetes pod to confirm return file processed successfully without error
-
-1. Confirm return file has moved to `dax` container in the `archive` sub directory in blob storage
+1. View tempSettlementData table in `ffc-pay-processing` has as many entries as rows in the CSV files.
 
 ### Schedule processing
 
