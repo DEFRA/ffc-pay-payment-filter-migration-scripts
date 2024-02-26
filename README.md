@@ -111,13 +111,15 @@ This is required as failing to apply this means that we are likely to face issue
 
 ### Verify CSV files
 
-> To be performed by Payments Team
+> To be performed by Payments Team & Enterprise Solutions Team
 
 1. Verify all CSV files are present
 
 1. Verify all CSV filenames are correct
 
 1. Verify content of CSV files is correct
+
+1. EST to confirm that the number of payments and invoice lines extracted on Sharepoint matches nunber of lines in the Payment Filter.
 
 ### Load Payments
 
@@ -273,6 +275,8 @@ This is required as failing to apply this means that we are likely to face issue
 1. Any BPS, CS or FDMR payment request that had a blocking hold should be blocked by a hold in `ffc-pay-processing`.
 
 1. Any BPS, CS or FDMR payment request that was held in the Settlement Request Editor or Quality Check application should be sent from `ffc-pay-processing` to `ffc-pay-request-editor`.
+
+1. The number of payment requests and invoice lines uploaded to Payment Hub matches the expected amount.
 
 ## Reset databases
 
