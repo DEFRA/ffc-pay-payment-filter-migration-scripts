@@ -261,17 +261,13 @@ This is required as failing to apply this means that we are likely to face issue
       \copy "tempSettlementData" FROM '/path/to/csSettlementData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
+1. Confirm that the tempSettlementData table in `ffc-pay-processing` has as many entries as rows in the CSV files.
+   
 1. Connect to target FFC Azure PostgreSQL server using client of choice
 
 1. Connect to `ffc-pay-processing-<ENV>` database
 
 1. Execute [ffc-pay-processing/update-settlement-data.sql](ffc-pay-processing/update-settlement-data.sql)
-
-### Confirm settlement data updated
-
-> To be performed by CCoE/Payments Team
-
-1. View tempSettlementData table in `ffc-pay-processing` has as many entries as rows in the CSV files.
 
 ### Schedule processing
 
