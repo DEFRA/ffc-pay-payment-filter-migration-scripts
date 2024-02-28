@@ -5,7 +5,7 @@ SET "invoiceNumber" =
       RIGHT("invoiceNumber", LENGTH("invoiceNumber") - 9),
       SUBSTRING("invoiceNumber" FROM 9 FOR 1)
   )
-AND "schemeId" = 6
+WHERE "schemeId" = 6
 AND SUBSTRING("invoiceNumber" FROM 9 FOR 1) ~ '[A-Za-z]' 
 AND SUBSTRING("invoiceNumber" FROM 10 FOR 1) ~ '[A-Za-z]';
 
