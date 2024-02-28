@@ -191,6 +191,8 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Execute [ffc-pay-processing/fix-anomalies.sql](ffc-pay-processing/fix-anomalies.sql)
 
+1. Execute [ffc-pay-processing/fix-split-invoice-numbers.sql](ffc-pay-processing/fix-split-invoice-numbers.sql)
+
 ### Load debt data
 
 > To be performed by CCoE.  Will need to use `psql` client to upload data due to volume of data.
