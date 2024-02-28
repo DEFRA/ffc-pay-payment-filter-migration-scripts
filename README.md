@@ -242,6 +242,10 @@ This is required as failing to apply this means that we are likely to face issue
     psql -h <host> -U <username> -d ffc-pay-processing-<env>
    ```
 
+1. Set your date format to the DD/MM/YYYY in line with expected data
+   ```
+      SET DateStyle TO 'ISO, DMY';
+   ```
 1. Execute 
     ```
       \copy "tempSettlementData" FROM '/path/to/bpsSettlementData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
