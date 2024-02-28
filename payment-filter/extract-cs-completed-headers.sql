@@ -6,7 +6,7 @@ SELECT
 	   R.request.value('(./Invoice/@InvoiceType)[1]', 'VARCHAR(50)') ledger,
 	   'SITI AGRI CS SYS' sourceSystem,
 	   [XML Out].value('(/Root/Requests/Request/Invoice/@DeliveryBody)[1]', 'VARCHAR(50)') deliveryBody,
-	   CONCAT('S', RIGHT(R.request.value('(/Root/Requests/Request/Invoice/@InvoiceNumber)[1]', 'VARCHAR(50)'), 7), COALESCE(NULLIF(R.request.value('(./Invoice/@ClaimNumber)[1]', 'VARCHAR(50)'), ''), S.[Claim Number]), 'V', CASE ISNUMERIC(RIGHT(R.request.value('(./Invoice/@InvoiceNumber)[1]', 'VARCHAR(50)'), 1)) WHEN 1 THEN FORMAT(R.request.value('(./Invoice/@RequestInvoiceNumber)[1]', 'INT'), '000') ELSE FORMAT(R.request.value('(./Invoice/@RequestInvoiceNumber)[1]', 'INT'), '00') END)  invoiceNumber,
+	   CONCAT('S', RIGHT(R.request.value('(./Invoice/@InvoiceNumber)[1]', 'VARCHAR(50)'), 7), COALESCE(NULLIF(R.request.value('(./Invoice/@ClaimNumber)[1]', 'VARCHAR(50)'), ''), S.[Claim Number]), 'V', CASE ISNUMERIC(RIGHT(R.request.value('(./Invoice/@InvoiceNumber)[1]', 'VARCHAR(50)'), 1)) WHEN 1 THEN FORMAT(R.request.value('(./Invoice/@RequestInvoiceNumber)[1]', 'INT'), '000') ELSE FORMAT(R.request.value('(./Invoice/@RequestInvoiceNumber)[1]', 'INT'), '00') END)  invoiceNumber,
 	   [XML Out].value('(/Root/Requests/Request/Invoice/@FRN)[1]', 'BIGINT') frn,
 	   NULL sbi,
 	   COALESCE(COALESCE([XML Out].value('(/Root/Requests/Request/InvoiceLines/InvoiceLine/@AgreementNumber)[1]', 'VARCHAR(50)'), [XML Out].value('(/Root/Requests/Request/Invoice/@ClaimNumber)[1]', 'VARCHAR(50)')), S.[Claim Number]) agreementNumber,
