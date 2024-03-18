@@ -12,7 +12,7 @@ If only Basic Payment Scheme (BPS) or Countryside Stewardship (CS) migration is 
 
 ## Pre-requisites
 
-> To be performed by Enterprise Solutions Team & CapGemini Biztalk support
+> To be performed by Enterprise Solutions Team & CapGemini BizTalk support
 
 Payment Filter processing has been disabled for schemes to be migrated.  Assurance given that no further payments will be processed for schemes to be migrated.
 
@@ -100,11 +100,25 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Save results as CSV with headers with name `debtData.csv`
 
+### Extract Dual Accounting use from Transformation Layer
+
+> To be performed by Enterprise Solutions Team
+
+1. Connect to Production Transformation Layer SQL Server with SSMS
+
+1. Execute [extract-ap-dual-accounting.sql](transformation-layer/extract-ap-dual-accounting.sql)
+
+1. Save results as CSV with headers with name `apDualAccounting.csv`
+
+1. Execute [extract-ar-dual-accounting.sql](transformation-layer/extract-ar-dual-accounting.sql)
+
+1. Save results as CSV with headers with name `arDualAccounting.csv`
+
 ### Transfer all CSV files to secure location
 
 > To be performed by Enterprise Solutions Team
 
-1. Agree SharePoint location: [Payment Filter Output](https://defra.sharepoint.com/sites/ea-leg-djw/DDS/Shared%20Documents/Forms/AllItems.aspx?ct=1684927252642&or=Teams%2DHL&ga=1&LOF=1&id=%2Fsites%2Fea%2Dleg%2Ddjw%2FDDS%2FShared%20Documents%2FDDTS%20Development%20Team%2FProjects%2FPayment%20Hub%20Migration%2FOutput%20Files&viewid=5b986c5b%2Df0c1%2D4450%2D8329%2D7e93856a8044&OR=Teams%2DHL&CT=1708952287676&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI0OS8yNDAxMDQxOTEzMCIsIkhhc0ZlZGVyYXRlZFVzZXIiOnRydWV9)
+1. Agreed SharePoint location: [Payment Filter Output](https://defra.sharepoint.com/sites/ea-leg-djw/DDS/Shared%20Documents/Forms/AllItems.aspx?ct=1684927252642&or=Teams%2DHL&ga=1&LOF=1&id=%2Fsites%2Fea%2Dleg%2Ddjw%2FDDS%2FShared%20Documents%2FDDTS%20Development%20Team%2FProjects%2FPayment%20Hub%20Migration%2FOutput%20Files&viewid=5b986c5b%2Df0c1%2D4450%2D8329%2D7e93856a8044&OR=Teams%2DHL&CT=1708952287676&clickparams=eyJBcHBOYW1lIjoiVGVhbXMtRGVza3RvcCIsIkFwcFZlcnNpb24iOiI0OS8yNDAxMDQxOTEzMCIsIkhhc0ZlZGVyYXRlZFVzZXIiOnRydWV9)
 
 1. Upload all CSV files to SharePoint location
 
@@ -183,6 +197,16 @@ This is required as failing to apply this means that we are likely to face issue
       \copy "tempHoldData" FROM '/path/to/holdsData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
+1. Execute
+    ```
+      \copy "tempDualAccounting" FROM '/path/to/apDualAccounting.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+    ```
+
+1. Execute
+    ```
+      \copy "tempDualAccounting" FROM '/path/to/arDualAccounting.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+    ```
+
 1. Connect to target FFC Azure PostgreSQL server using client of choice
 
 1. Connect to `ffc-pay-processing-<ENV>` database
@@ -192,6 +216,8 @@ This is required as failing to apply this means that we are likely to face issue
 1. Execute [ffc-pay-processing/fix-anomalies.sql](ffc-pay-processing/fix-anomalies.sql)
 
 1. Execute [ffc-pay-processing/fix-split-invoice-numbers.sql](ffc-pay-processing/fix-split-invoice-numbers.sql)
+
+1. Execute [ffc-pay-processing/apply-dual-accounting.sql](ffc-pay-processing/apply-dual-accounting.sql)
 
 ### Load debt data
 
