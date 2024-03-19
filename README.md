@@ -211,7 +211,15 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Connect to `ffc-pay-processing-<ENV>` database
 
-1. Execute [ffc-pay-processing/load-payments.sql](ffc-pay-processing/load-payments.sql)
+1. Execute [ffc-pay-processing/load-payment-requests.sql](ffc-pay-processing/load-payment-requests.sql)
+
+1. Execute [ffc-pay-processing/load-invoice-lines.sql](ffc-pay-processing/load-invoice-lines.sql)
+
+1. Execute [ffc-pay-processing/load-completed-payment-requests.sql](ffc-pay-processing/load-completed-payment-requests.sql)
+
+1. Execute [ffc-pay-processing/load-completed-invoice-lines.sql](ffc-pay-processing/load-completed-invoice-lines.sql)
+
+1. Execute [ffc-pay-processing/load-holds.sql](ffc-pay-processing/load-holds.sql)
 
 1. Execute [ffc-pay-processing/fix-anomalies.sql](ffc-pay-processing/fix-anomalies.sql)
 

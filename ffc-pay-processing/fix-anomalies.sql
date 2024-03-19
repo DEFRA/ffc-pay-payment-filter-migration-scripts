@@ -116,3 +116,35 @@ LEFT JOIN "completedInvoiceLines"
 WHERE "completedInvoiceLines"."completedPaymentRequestId" IS NULL
   AND "invoiceLines"."description" NOT LIKE 'N00%'
   AND "paymentRequests"."migrationId" IN ('BPS_218748', 'BPS_228840');
+
+UPDATE "invoiceLines"
+SET "description" = 'X01 - Reduction arising from Progressive Reduction Bnd 1'
+WHERE "description" = 'X01 - Reduction arising from Progressive Reduction';
+
+UPDATE "invoiceLines"
+SET "description" = 'X02 - Reduction arising from Progressive Reduction Bnd 2'
+WHERE "description" = 'X02 - Reduction arising from Progressive Reduction';
+
+UPDATE "invoiceLines"
+SET "description" = 'X03 - Reduction arising from Progressive Reduction Bnd 3'
+WHERE "description" = 'X03 - Reduction arising from Progressive Reduction';
+
+UPDATE "invoiceLines"
+SET "description" = 'X04 - Reduction arising from Progressive Reduction Bnd 4'
+WHERE "description" = 'X04 - Reduction arising from Progressive Reduction';
+
+UPDATE "completedInvoiceLines"
+SET "description" = 'X01 - Reduction arising from Progressive Reduction Bnd 1'
+WHERE "description" = 'X01 - Reduction arising from Progressive Reduction';
+
+UPDATE "completedInvoiceLines"
+SET "description" = 'X02 - Reduction arising from Progressive Reduction Bnd 2'
+WHERE "description" = 'X02 - Reduction arising from Progressive Reduction';
+
+UPDATE "completedInvoiceLines"
+SET "description" = 'X03 - Reduction arising from Progressive Reduction Bnd 3'
+WHERE "description" = 'X03 - Reduction arising from Progressive Reduction';
+
+UPDATE "completedInvoiceLines"
+SET "description" = 'X04 - Reduction arising from Progressive Reduction Bnd 4'
+WHERE "description" = 'X04 - Reduction arising from Progressive Reduction';
