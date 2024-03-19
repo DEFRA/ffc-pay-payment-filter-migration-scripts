@@ -117,3 +117,9 @@ CREATE TABLE IF NOT EXISTS public."tempHoldData"
     added timestamp without time zone,
     closed timestamp without time zone
 );
+
+CREATE TABLE IF NOT EXISTS public."tempDualAccounting"
+(
+    "invoiceNumber" character varying(30) COLLATE pg_catalog."default",
+    "fundCode" character varying(6) COLLATE pg_catalog."default"
+);
