@@ -149,89 +149,85 @@ UPDATE "completedInvoiceLines"
 SET "description" = 'X04 - Reduction arising from Progressive Reduction Bnd 4'
 WHERE "description" = 'X04 - Reduction arising from Progressive Reduction';
 
-UPDATE public."paymentRequests" pr
-SET "agreementNumber" = 
-    CASE 
-        WHEN pr."agreementNumber" = 'A#######' THEN
-            CASE pr."frn"
-                WHEN '1101933828' THEN 'A1013885'
-                WHEN '1102285404' THEN 'A1004567'
-                WHEN '1102528803' THEN 'A1003804'
-                WHEN '1104853825' THEN 'A1011859'
-                ELSE pr."agreementNumber"
-            END
-        ELSE pr."agreementNumber"
-    END;
+UPDATE public."paymentRequests"
+SET "contractNumber" = 'A1013885'
+WHERE "migrationId" = 'CS_46288';
 
-UPDATE public."paymentRequests" pr
-SET "contractNumber" = 
-    CASE 
-        WHEN pr."contractNumber" = 'A#######' THEN
-            CASE pr."frn"
-                WHEN '1101933828' THEN 'A1013885'
-                WHEN '1102285404' THEN 'A1004567'
-                WHEN '1102528803' THEN 'A1003804'
-                WHEN '1104853825' THEN 'A1011859'
-                ELSE pr."contractNumber"
-            END
-        ELSE pr."contractNumber"
-    END;
+UPDATE public."completedPaymentRequests"
+SET "contractNumber" = 'A1013885'
+WHERE "migrationId" = 'CS_46288';
 
-UPDATE public."completedPaymentRequests" pr
-SET "agreementNumber" = 
-    CASE 
-        WHEN pr."agreementNumber" = 'A#######' THEN
-            CASE pr."frn"
-                WHEN '1101933828' THEN 'A1013885'
-                WHEN '1102285404' THEN 'A1004567'
-                WHEN '1102528803' THEN 'A1003804'
-                WHEN '1104853825' THEN 'A1011859'
-                ELSE pr."agreementNumber"
-            END
-        ELSE pr."agreementNumber"
-    END;
+UPDATE public."invoiceLines"
+SET "agreementNumber" = 'A1013885'
+FROM public."paymentRequests" pr
+WHERE pr."migrationId" = 'CS_46288'
+AND "invoiceLines"."paymentRequestId" = pr."paymentRequestId";
 
-UPDATE public."completedPaymentRequests" pr
-SET "contractNumber" = 
-    CASE 
-        WHEN pr."contractNumber" = 'A#######' THEN
-            CASE pr."frn"
-                WHEN '1101933828' THEN 'A1013885'
-                WHEN '1102285404' THEN 'A1004567'
-                WHEN '1102528803' THEN 'A1003804'
-                WHEN '1104853825' THEN 'A1011859'
-                ELSE pr."contractNumber"
-            END
-        ELSE pr."contractNumber"
-    END;
+UPDATE public."completedInvoiceLines"
+SET "agreementNumber" = 'A1013885'
+FROM public."paymentRequests" pr
+WHERE pr."migrationId" = 'CS_46288'
+AND "completedInvoiceLines"."paymentRequestId" = pr."paymentRequestId";
 
-UPDATE public."invoiceLines" il
-SET "agreementNumber" = 
-    CASE 
-        WHEN "agreementNumber" = 'A#######' THEN
-            CASE 
-                WHEN EXISTS (SELECT 1 FROM public."paymentRequests" pr WHERE il."paymentRequestId" = pr."paymentRequestId" AND pr.frn = 1101933828) THEN 'A1013885'
-                WHEN EXISTS (SELECT 1 FROM public."paymentRequests" pr WHERE il."paymentRequestId" = pr."paymentRequestId" AND pr.frn = 1102285404) THEN 'A1004567'
-                WHEN EXISTS (SELECT 1 FROM public."paymentRequests" pr WHERE il."paymentRequestId" = pr."paymentRequestId" AND pr.frn = 1102528803) THEN 'A1003804'
-                WHEN EXISTS (SELECT 1 FROM public."paymentRequests" pr WHERE il."paymentRequestId" = pr."paymentRequestId" AND pr.frn = 1104853825) THEN 'A1011859'
-                ELSE "agreementNumber"
-            END
-        ELSE "agreementNumber"
-    END;
+UPDATE public."paymentRequests"
+SET "contractNumber" = 'A1004567'
+WHERE "migrationId" = 'CS_44522'
 
-UPDATE public."completedInvoiceLines" il
-SET "agreementNumber" = 
-    CASE 
-        WHEN "agreementNumber" = 'A#######' THEN
-            CASE 
-                WHEN EXISTS (SELECT 1 FROM public."completedPaymentRequests" pr WHERE il."completedPaymentRequestId" = pr."completedPaymentRequestId" AND pr.frn = 1101933828) THEN 'A1013885'
-                WHEN EXISTS (SELECT 1 FROM public."completedPaymentRequests" pr WHERE il."completedPaymentRequestId" = pr."completedPaymentRequestId" AND pr.frn = 1102285404) THEN 'A1004567'
-                WHEN EXISTS (SELECT 1 FROM public."completedPaymentRequests" pr WHERE il."completedPaymentRequestId" = pr."completedPaymentRequestId" AND pr.frn = 1102528803) THEN 'A1003804'
-                WHEN EXISTS (SELECT 1 FROM public."completedPaymentRequests" pr WHERE il."completedPaymentRequestId" = pr."completedPaymentRequestId" AND pr.frn = 1104853825) THEN 'A1011859'
-                ELSE "agreementNumber"
-            END
-        ELSE "agreementNumber"
-    END;
+UPDATE public."completedPaymentRequests"
+SET "contractNumber" = 'A1004567'
+WHERE "migrationId" = 'CS_44522'
+
+UPDATE public."invoiceLines"
+SET "agreementNumber" = 'A1004567'
+FROM public."paymentRequests" pr
+WHERE pr."migrationId" = 'CS_44522'
+AND "invoiceLines"."paymentRequestId" = pr."paymentRequestId";
+
+UPDATE public."completedInvoiceLines"
+SET "agreementNumber" = 'A1004567'
+FROM public."paymentRequests" pr
+WHERE pr."migrationId" = 'CS_44522'
+AND "completedInvoiceLines"."paymentRequestId" = pr."paymentRequestId";
+
+UPDATE public."paymentRequests"
+SET "contractNumber" = 'A1003804'
+WHERE "migrationId" = 'CS_44521'
+
+UPDATE public."completedPaymentRequests"
+SET "contractNumber" = 'A1003804'
+WHERE "migrationId" = 'CS_44521'
+
+UPDATE public."invoiceLines"
+SET "agreementNumber" = 'A1003804'
+FROM public."paymentRequests" pr
+WHERE pr."migrationId" = 'CS_44521'
+AND "invoiceLines"."paymentRequestId" = pr."paymentRequestId";
+
+UPDATE public."completedInvoiceLines"
+SET "agreementNumber" = 'A1003804'
+FROM public."paymentRequests" pr
+WHERE pr."migrationId" = 'CS_44521'
+AND "completedInvoiceLines"."paymentRequestId" = pr."paymentRequestId";
+
+UPDATE public."paymentRequests"
+SET "contractNumber" = 'A1011859'
+WHERE "migrationId" = 'CS_46287'
+
+UPDATE public."completedPaymentRequests"
+SET "contractNumber" = 'A1011859'
+WHERE "migrationId" = 'CS_46287'
+
+UPDATE public."invoiceLines"
+SET "agreementNumber" = 'A1011859'
+FROM public."paymentRequests" pr
+WHERE pr."migrationId" = 'CS_46287'
+AND "invoiceLines"."paymentRequestId" = pr."paymentRequestId";
+
+UPDATE public."completedInvoiceLines"
+SET "agreementNumber" = 'A1011859'
+FROM public."paymentRequests" pr
+WHERE pr."migrationId" = 'CS_46287'
+AND "completedInvoiceLines"."paymentRequestId" = pr."paymentRequestId";
 
 UPDATE public."paymentRequests" AS pr
 SET "agreementNumber" = CONCAT('A0', SUBSTRING(pr."agreementNumber", 2))
