@@ -165,17 +165,17 @@ AND "invoiceLines"."paymentRequestId" = pr."paymentRequestId";
 
 UPDATE public."completedInvoiceLines"
 SET "agreementNumber" = 'A1013885'
-FROM public."paymentRequests" pr
+FROM public."completedPaymentRequests" pr
 WHERE pr."migrationId" = 'CS_46288'
-AND "completedInvoiceLines"."paymentRequestId" = pr."paymentRequestId";
+AND "completedInvoiceLines"."completedPaymentRequestId" = pr."completedPaymentRequestId";
 
 UPDATE public."paymentRequests"
 SET "contractNumber" = 'A1004567'
-WHERE "migrationId" = 'CS_44522'
+WHERE "migrationId" = 'CS_44522';
 
 UPDATE public."completedPaymentRequests"
 SET "contractNumber" = 'A1004567'
-WHERE "migrationId" = 'CS_44522'
+WHERE "migrationId" = 'CS_44522';
 
 UPDATE public."invoiceLines"
 SET "agreementNumber" = 'A1004567'
@@ -185,17 +185,17 @@ AND "invoiceLines"."paymentRequestId" = pr."paymentRequestId";
 
 UPDATE public."completedInvoiceLines"
 SET "agreementNumber" = 'A1004567'
-FROM public."paymentRequests" pr
+FROM public."completedPaymentRequests" pr
 WHERE pr."migrationId" = 'CS_44522'
-AND "completedInvoiceLines"."paymentRequestId" = pr."paymentRequestId";
+AND "completedInvoiceLines"."completedPaymentRequestId" = pr."completedPaymentRequestId";
 
 UPDATE public."paymentRequests"
 SET "contractNumber" = 'A1003804'
-WHERE "migrationId" = 'CS_44521'
+WHERE "migrationId" = 'CS_44521';
 
 UPDATE public."completedPaymentRequests"
 SET "contractNumber" = 'A1003804'
-WHERE "migrationId" = 'CS_44521'
+WHERE "migrationId" = 'CS_44521';
 
 UPDATE public."invoiceLines"
 SET "agreementNumber" = 'A1003804'
@@ -205,17 +205,17 @@ AND "invoiceLines"."paymentRequestId" = pr."paymentRequestId";
 
 UPDATE public."completedInvoiceLines"
 SET "agreementNumber" = 'A1003804'
-FROM public."paymentRequests" pr
+FROM public."completedPaymentRequests" pr
 WHERE pr."migrationId" = 'CS_44521'
-AND "completedInvoiceLines"."paymentRequestId" = pr."paymentRequestId";
+AND "completedInvoiceLines"."completedPaymentRequestId" = pr."completedPaymentRequestId";
 
 UPDATE public."paymentRequests"
 SET "contractNumber" = 'A1011859'
-WHERE "migrationId" = 'CS_46287'
+WHERE "migrationId" = 'CS_46287';
 
 UPDATE public."completedPaymentRequests"
 SET "contractNumber" = 'A1011859'
-WHERE "migrationId" = 'CS_46287'
+WHERE "migrationId" = 'CS_46287';
 
 UPDATE public."invoiceLines"
 SET "agreementNumber" = 'A1011859'
@@ -225,9 +225,9 @@ AND "invoiceLines"."paymentRequestId" = pr."paymentRequestId";
 
 UPDATE public."completedInvoiceLines"
 SET "agreementNumber" = 'A1011859'
-FROM public."paymentRequests" pr
+FROM public."completedPaymentRequests" pr
 WHERE pr."migrationId" = 'CS_46287'
-AND "completedInvoiceLines"."paymentRequestId" = pr."paymentRequestId";
+AND "completedInvoiceLines"."completedPaymentRequestId" = pr."completedPaymentRequestId";
 
 UPDATE public."paymentRequests" AS pr
 SET "agreementNumber" = CONCAT('A0', SUBSTRING(pr."agreementNumber", 2))
