@@ -263,3 +263,11 @@ FROM public."completedPaymentRequests" AS pr
 WHERE pr."schemeId" = 5
 AND cil."completedPaymentRequestId" = pr."completedPaymentRequestId"
 AND cil."agreementNumber" ~ '^A[0-9]{6}$';
+
+UPDATE public."invoiceLines"
+SET description = 'P11 - Reduction arising from Financial Discipline Budget'
+WHERE description LIKE 'P11 - Reduction arising from Financial Discipline%';
+
+UPDATE public."completedInvoiceLines"
+SET description = 'P11 - Reduction arising from Financial Discipline Budget'
+WHERE description LIKE 'P11 - Reduction arising from Financial Discipline%';
