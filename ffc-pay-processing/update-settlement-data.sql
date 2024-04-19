@@ -16,7 +16,8 @@ UPDATE public."completedPaymentRequests"
             WHEN "marketingYear" = 2020 THEN 0.89092
         END)
     WHERE "schemeId" = 6
-    AND "marketingYear" IN (2015, 2016, 2017, 2018, 2019, 2020);
+    AND "marketingYear" IN (2015, 2016, 2017, 2018, 2019, 2020)
+    AND "currency" = 'GBP';
 
 UPDATE public."completedPaymentRequests" cpr
     SET "settledValue" = FLOOR(cpr."settledValue" /
@@ -34,4 +35,5 @@ UPDATE public."completedPaymentRequests" cpr
             GROUP BY "completedPaymentRequestId"
     ) cil
     WHERE cpr."completedPaymentRequestId" = cil."completedPaymentRequestId"
-    AND cpr."schemeId" = 6;
+    AND cpr."schemeId" = 7
+    AND "currency" = 'GBP';
