@@ -22,12 +22,12 @@ UPDATE public."completedPaymentRequests"
 UPDATE public."completedPaymentRequests" cpr
     SET "settledValue" = FLOOR(cpr."settledValue" /
         CASE
-            WHEN cil."schemeCode" = 10575 THEN 0.73129
-            WHEN cil."schemeCode" = 10576 THEN 0.85228
-            WHEN cil."schemeCode" = 10577 THEN 0.8947
-            WHEN cil."schemeCode" = 10578 THEN 0.89281
-            WHEN cil."schemeCode" = 10579 THEN 0.89092
-            WHEN cil."schemeCode" = 10580 THEN 0.89092
+            WHEN cil."schemeCode" = '10575' THEN 0.73129
+            WHEN cil."schemeCode" = '10576' THEN 0.85228
+            WHEN cil."schemeCode" = '10577' THEN 0.8947
+            WHEN cil."schemeCode" = '10578' THEN 0.89281
+            WHEN cil."schemeCode" = '10579' THEN 0.89092
+            WHEN cil."schemeCode" = '10580' THEN 0.89092
         END)
     FROM (
         SELECT "completedPaymentRequestId", MIN("schemeCode") AS "schemeCode"
