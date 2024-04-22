@@ -6,4 +6,5 @@ FROM (
     JOIN public."completedPaymentRequests" AS c ON c."completedPaymentRequestId" = l1."completedPaymentRequestId"
     JOIN public."tempDualAccounting" AS t ON c."invoiceNumber" = t."invoiceNumber"
 ) AS t
-WHERE l."completedPaymentRequestId" = t."completedPaymentRequestId";
+WHERE l."completedPaymentRequestId" = t."completedPaymentRequestId"
+AND l."stateAid" != true;
