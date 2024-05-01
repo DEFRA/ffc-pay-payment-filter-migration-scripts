@@ -165,6 +165,10 @@ UPDATE public."completedPaymentRequests"
 SET "invoiceNumber" = 'S0551618A1013885V001'
 WHERE "migrationId" = 'CS_46288';
 
+UPDATE public."completedPaymentRequests"
+SET "originalInvoiceNumber" = 'SPFCS000551618A1013885V01'
+WHERE "migrationId" = 'CS_46288';
+
 UPDATE public."invoiceLines"
 SET "agreementNumber" = 'A1013885'
 FROM public."paymentRequests" pr
@@ -191,6 +195,10 @@ WHERE "migrationId" = 'CS_44522';
 
 UPDATE public."completedPaymentRequests"
 SET "invoiceNumber" = 'S0549328A1004567V001'
+WHERE "migrationId" = 'CS_44522';
+
+UPDATE public."completedPaymentRequests"
+SET "originalInvoiceNumber" = 'SPFCS000549328A1004567V01'
 WHERE "migrationId" = 'CS_44522';
 
 UPDATE public."invoiceLines"
@@ -221,6 +229,10 @@ UPDATE public."completedPaymentRequests"
 SET "invoiceNumber" = 'S0549327A1003804V001'
 WHERE "migrationId" = 'CS_44521';
 
+UPDATE public."completedPaymentRequests"
+SET "originalInvoiceNumber" = 'SPFCS000549327A1003804V01'
+WHERE "migrationId" = 'CS_44521';
+
 UPDATE public."invoiceLines"
 SET "agreementNumber" = 'A1003804'
 FROM public."paymentRequests" pr
@@ -247,6 +259,10 @@ WHERE "migrationId" = 'CS_46287';
 
 UPDATE public."completedPaymentRequests"
 SET "invoiceNumber" = 'S0551617A1011859V001'
+WHERE "migrationId" = 'CS_46287';
+
+UPDATE public."completedPaymentRequests"
+SET "originalInvoiceNumber" = 'SPFCS000551617A1011859V01'
 WHERE "migrationId" = 'CS_46287';
 
 UPDATE public."invoiceLines"
