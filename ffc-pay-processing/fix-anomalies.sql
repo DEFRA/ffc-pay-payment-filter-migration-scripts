@@ -153,8 +153,16 @@ UPDATE public."paymentRequests"
 SET "contractNumber" = 'A1013885'
 WHERE "migrationId" = 'CS_46288';
 
+UPDATE public."paymentRequests"
+SET "invoiceNumber" = 'S0551618A1013885V001'
+WHERE "migrationId" = 'CS_46288';
+
 UPDATE public."completedPaymentRequests"
 SET "contractNumber" = 'A1013885'
+WHERE "migrationId" = 'CS_46288';
+
+UPDATE public."completedPaymentRequests"
+SET "invoiceNumber" = 'S0551618A1013885V001'
 WHERE "migrationId" = 'CS_46288';
 
 UPDATE public."invoiceLines"
@@ -173,8 +181,16 @@ UPDATE public."paymentRequests"
 SET "contractNumber" = 'A1004567'
 WHERE "migrationId" = 'CS_44522';
 
+UPDATE public."paymentRequests"
+SET "invoiceNumber" = 'S0549328A1004567V001'
+WHERE "migrationId" = 'CS_44522';
+
 UPDATE public."completedPaymentRequests"
 SET "contractNumber" = 'A1004567'
+WHERE "migrationId" = 'CS_44522';
+
+UPDATE public."completedPaymentRequests"
+SET "invoiceNumber" = 'S0549328A1004567V001'
 WHERE "migrationId" = 'CS_44522';
 
 UPDATE public."invoiceLines"
@@ -193,8 +209,16 @@ UPDATE public."paymentRequests"
 SET "contractNumber" = 'A1003804'
 WHERE "migrationId" = 'CS_44521';
 
+UPDATE public."paymentRequests"
+SET "invoiceNumber" = 'S0549327A1003804V001'
+WHERE "migrationId" = 'CS_44521';
+
 UPDATE public."completedPaymentRequests"
 SET "contractNumber" = 'A1003804'
+WHERE "migrationId" = 'CS_44521';
+
+UPDATE public."completedPaymentRequests"
+SET "invoiceNumber" = 'S0549327A1003804V001'
 WHERE "migrationId" = 'CS_44521';
 
 UPDATE public."invoiceLines"
@@ -213,8 +237,16 @@ UPDATE public."paymentRequests"
 SET "contractNumber" = 'A1011859'
 WHERE "migrationId" = 'CS_46287';
 
+UPDATE public."paymentRequests"
+SET "invoiceNumber" = 'S0551617A1011859V001'
+WHERE "migrationId" = 'CS_46287';
+
 UPDATE public."completedPaymentRequests"
 SET "contractNumber" = 'A1011859'
+WHERE "migrationId" = 'CS_46287';
+
+UPDATE public."completedPaymentRequests"
+SET "invoiceNumber" = 'S0551617A1011859V001'
 WHERE "migrationId" = 'CS_46287';
 
 UPDATE public."invoiceLines"
@@ -238,7 +270,6 @@ UPDATE public."paymentRequests" AS pr
 SET "contractNumber" = CONCAT('A0', SUBSTRING(pr."contractNumber", 2))
 WHERE pr."schemeId" = 5
 AND pr."contractNumber" ~ '^A[0-9]{6}$';
-
 
 UPDATE public."completedPaymentRequests" AS cpr
 SET "agreementNumber" = CONCAT('A0', SUBSTRING(cpr."agreementNumber", 2))
