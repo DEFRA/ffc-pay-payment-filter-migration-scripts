@@ -1,3 +1,11 @@
+UPDATE public."tempSettlementData"
+SET "invoiceNumber" = 'S0549328A1004567V001'
+WHERE "invoiceNumber" = 'S0549328A#######V001';
+
+UPDATE public."tempSettlementData"
+SET "invoiceNumber" = 'S0549327A1003804V001'
+WHERE "invoiceNumber" = 'S0549327A#######V001';
+
 UPDATE public."completedPaymentRequests" AS c
     SET "lastSettlement" = t."lastSettlement",
         "settledValue" = t."value" * 100
