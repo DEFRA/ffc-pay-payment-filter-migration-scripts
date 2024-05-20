@@ -318,3 +318,13 @@ WHERE description LIKE 'P11 - Reduction arising from Financial Discipline%';
 UPDATE public."completedInvoiceLines"
 SET description = 'P11 - Reduction arising from Financial Discipline Budget'
 WHERE description LIKE 'P11 - Reduction arising from Financial Discipline%';
+
+UPDATE public."paymentRequests"
+SET "deliveryBody" = 'FC00'
+WHERE "schemeId" = 5
+AND NOT EXISTS (
+    SELECT 1
+    FROM public."invoiceLines"
+    WHERE public."invoiceLines"."paymentRequestId" = public."paymentRequests"."paymentRequestId"
+    AND "deliveryBody" = 'NE00'
+);
