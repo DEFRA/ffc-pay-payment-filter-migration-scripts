@@ -14,7 +14,7 @@ UPDATE public."completedPaymentRequests" AS c
         AND (c."lastSettlement" IS NULL OR c."lastSettlement" < t."lastSettlement");
 
 UPDATE public."completedPaymentRequests"
-    SET "settledValue" = FLOOR("settledValue" /
+    SET "settledValue" = ROUND("settledValue" /
         CASE
             WHEN "marketingYear" = 2015 THEN 0.73129
             WHEN "marketingYear" = 2016 THEN 0.85228
@@ -28,7 +28,7 @@ UPDATE public."completedPaymentRequests"
     AND "currency" = 'GBP';
 
 UPDATE public."completedPaymentRequests" cpr
-    SET "settledValue" = FLOOR(cpr."settledValue" /
+    SET "settledValue" = ROUND(cpr."settledValue" /
         CASE
             WHEN cil."schemeCode" = '10575' THEN 0.73129
             WHEN cil."schemeCode" = '10576' THEN 0.85228
