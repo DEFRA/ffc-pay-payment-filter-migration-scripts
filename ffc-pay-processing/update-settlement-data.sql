@@ -17,6 +17,5 @@ UPDATE public."completedPaymentRequests"
     SET "settledValue" = "value"
     WHERE "schemeId" IN (6, 7)
     AND "marketingYear" IN (2015, 2016, 2017, 2018, 2019, 2020)
-    AND "currency" = 'GBP'
     AND "settledValue" IS NOT NULL
     AND "settledValue" != 0;
