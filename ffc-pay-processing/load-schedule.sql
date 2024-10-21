@@ -6,7 +6,8 @@ LEFT JOIN "outbox"
   ON "completedPaymentRequests"."completedPaymentRequestId" = "outbox"."completedPaymentRequestId"
 WHERE "outbox"."completedPaymentRequestId" IS NULL
   AND "completedPaymentRequests"."migrated" IS NOT NULL
-  AND "completedPaymentRequests"."submitted" IS NULL;
+  AND "completedPaymentRequests"."submitted" IS NULL
+  AND "completedPaymentRequests"."schemeId" != 7;
 
 INSERT INTO "schedule"(
   "paymentRequestId",
@@ -21,5 +22,6 @@ LEFT JOIN "completedPaymentRequests"
   ON "paymentRequests"."paymentRequestId" = "completedPaymentRequests"."paymentRequestId"
 WHERE "schedule"."paymentRequestId" IS NULL
   AND "paymentRequests"."migrated" IS NOT NULL
-  AND "completedPaymentRequests"."paymentRequestId" IS NULL;
+  AND "completedPaymentRequests"."paymentRequestId" IS NULL
+  AND "paymentRequests"."schemeId" != 7;
 
