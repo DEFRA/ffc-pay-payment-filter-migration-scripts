@@ -1,8 +1,9 @@
-INSERT INTO holds(
+INSERT INTO holds (
   frn,
   "holdCategoryId",
   added,
-  migrated)
+  migrated
+)
 SELECT
   "tempHoldData".frn,
   "tempHoldData"."holdCategoryId",
@@ -18,4 +19,7 @@ LEFT JOIN (
 ) "currentHolds"
   ON "tempHoldData".frn = "currentHolds".frn
   AND "tempHoldData"."holdCategoryId" = "currentHolds"."holdCategoryId"
-WHERE "currentHolds".frn IS NULL;
+JOIN "holdCategories"
+  ON "tempHoldData"."holdCategoryId" = "holdCategories"."holdCategoryId"
+WHERE "currentHolds".frn IS NULL
+  AND "holdCategories"."schemeId" != 7;
