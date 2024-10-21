@@ -30,7 +30,7 @@ INNER JOIN "completedPaymentRequests"
 LEFT JOIN "completedInvoiceLines"
   ON "completedPaymentRequests"."completedPaymentRequestId" = "completedInvoiceLines"."completedPaymentRequestId"
 WHERE "completedInvoiceLines"."completedPaymentRequestId" IS NULL
-  AND "completedInvoiceLines"."schemeId" = 5
+  AND "completedPaymentRequests"."schemeId" = 5
   AND "tempCompletedInvoiceLines"."description" NOT LIKE 'N00%';
 
 // IMPORT BPS invoice lines
@@ -65,5 +65,5 @@ INNER JOIN "completedPaymentRequests"
 LEFT JOIN "completedInvoiceLines"
   ON "completedPaymentRequests"."completedPaymentRequestId" = "completedInvoiceLines"."completedPaymentRequestId"
 WHERE "completedInvoiceLines"."completedPaymentRequestId" IS NULL
-  AND "completedInvoiceLines"."schemeId" = 6
+  AND "completedPaymentRequests"."schemeId" = 6
   AND "tempCompletedInvoiceLines"."description" NOT LIKE 'N00%';
