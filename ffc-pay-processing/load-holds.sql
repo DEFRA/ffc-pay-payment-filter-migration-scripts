@@ -18,4 +18,7 @@ LEFT JOIN (
 ) "currentHolds"
   ON "tempHoldData".frn = "currentHolds".frn
   AND "tempHoldData"."holdCategoryId" = "currentHolds"."holdCategoryId"
-WHERE "currentHolds".frn IS NULL;
+JOIN "holdCategories"
+  ON "tempHoldData"."holdCategoryId" = "holdCategories"."holdCategoryId"
+WHERE "currentHolds".frn IS NULL
+  AND "holdCategories"."schemeId" != 7;

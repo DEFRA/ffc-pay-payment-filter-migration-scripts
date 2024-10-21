@@ -28,4 +28,5 @@ LEFT JOIN public."debtData"
   AND "tempDebtData".frn = "debtData".frn
   AND "tempDebtData"."schemeId" = "debtData"."schemeId"
   AND "tempDebtData"."netValue" = "debtData"."netValue"
-WHERE "debtData".reference IS NULL;
+WHERE "debtData".reference IS NULL
+  AND "tempDebtData"."schemeId" != 7;
