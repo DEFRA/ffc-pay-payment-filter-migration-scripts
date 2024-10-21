@@ -1,9 +1,8 @@
-INSERT INTO holds (
+INSERT INTO holds(
   frn,
   "holdCategoryId",
   added,
-  migrated
-)
+  migrated)
 SELECT
   "tempHoldData".frn,
   "tempHoldData"."holdCategoryId",
