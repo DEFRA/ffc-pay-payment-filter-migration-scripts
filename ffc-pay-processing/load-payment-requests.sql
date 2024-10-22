@@ -69,4 +69,5 @@ SELECT
 FROM "tempPaymentRequests"
 LEFT JOIN "paymentRequests"
   ON "tempPaymentRequests"."migrationId" = "paymentRequests"."migrationId"
-WHERE "paymentRequests"."migrationId" IS NULL;
+WHERE "paymentRequests"."migrationId" IS NULL
+AND "tempPaymentRequests"."schemeId" != 7;

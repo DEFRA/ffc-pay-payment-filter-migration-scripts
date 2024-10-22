@@ -30,4 +30,5 @@ INNER JOIN "paymentRequests"
 LEFT JOIN "invoiceLines"
   ON "paymentRequests"."paymentRequestId" = "invoiceLines"."paymentRequestId"
 WHERE "invoiceLines"."paymentRequestId" IS NULL
-  AND "tempInvoiceLines"."description" NOT LIKE 'N00%';
+  AND "tempInvoiceLines"."description" NOT LIKE 'N00%'
+  AND "paymentRequests"."schemeId" != 7;

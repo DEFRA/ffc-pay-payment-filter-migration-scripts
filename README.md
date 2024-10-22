@@ -332,6 +332,10 @@ In the event the migration needs to be reversed, the following scripts can be ru
 - [ffc-pay-request-editor](ffc-pay-request-editor/rollback.sql)
 - [ffc-pay-processing](ffc-pay-processing/rollback.sql)
 
+The script to run against ffc-pay-processing may be long running. If Payment Hub team have given the go-ahead, we can run an alternative script which will ignore foreign keys.
+
+- [ffc-pay-processing](ffc-pay-processing/cs-bps-rollback.sql)
+
 > DO NOT run `reset.sql` scripts as these will delete all data from the database.  For local development scenarios only.
 
 ## Clean up
