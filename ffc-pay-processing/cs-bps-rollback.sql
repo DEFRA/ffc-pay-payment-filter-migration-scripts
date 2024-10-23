@@ -1,5 +1,3 @@
-SET session_replication_role = 'replica';
-
 DELETE FROM "outbox"
 USING "completedPaymentRequests"
 WHERE "outbox"."completedPaymentRequestId" = "completedPaymentRequests"."completedPaymentRequestId"
@@ -45,5 +43,3 @@ WHERE "migrationId" IS NOT NULL
 AND "schemeId" = 7;
 
 DELETE FROM "holds" WHERE "migrationId" IS NOT NULL;
-
-SET session_replication_role = 'origin';

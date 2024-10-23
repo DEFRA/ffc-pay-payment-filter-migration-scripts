@@ -14,24 +14,24 @@ INSERT INTO "completedInvoiceLines"(
   "stateAid")
 SELECT
   "completedPaymentRequests"."completedPaymentRequestId",
-  "tempCompletedInvoiceLines"."accountCode",
-  "tempCompletedInvoiceLines"."fundCode",
-  "tempCompletedInvoiceLines".description,
-  "tempCompletedInvoiceLines".value,
-  "tempCompletedInvoiceLines"."schemeCode",
-  "tempCompletedInvoiceLines".convergence,
-  "tempCompletedInvoiceLines"."deliveryBody",
-  "tempCompletedInvoiceLines"."agreementNumber",
-  "tempCompletedInvoiceLines"."marketingYear",
-  "tempCompletedInvoiceLines"."stateAid"
-FROM "tempCompletedInvoiceLines"
+  "v2TempCompletedInvoiceLines"."accountCode",
+  "v2TempCompletedInvoiceLines"."fundCode",
+  "v2TempCompletedInvoiceLines".description,
+  "v2TempCompletedInvoiceLines".value,
+  "v2TempCompletedInvoiceLines"."schemeCode",
+  "v2TempCompletedInvoiceLines".convergence,
+  "v2TempCompletedInvoiceLines"."deliveryBody",
+  "v2TempCompletedInvoiceLines"."agreementNumber",
+  "v2TempCompletedInvoiceLines"."marketingYear",
+  "v2TempCompletedInvoiceLines"."stateAid"
+FROM "v2TempCompletedInvoiceLines"
 INNER JOIN "completedPaymentRequests"
-  ON "tempCompletedInvoiceLines"."migrationId" = "completedPaymentRequests"."migrationId"
+  ON "v2TempCompletedInvoiceLines"."migrationId" = "completedPaymentRequests"."migrationId"
 LEFT JOIN "completedInvoiceLines"
   ON "completedPaymentRequests"."completedPaymentRequestId" = "completedInvoiceLines"."completedPaymentRequestId"
 WHERE "completedInvoiceLines"."completedPaymentRequestId" IS NULL
   AND "completedPaymentRequests"."schemeId" = 5
-  AND "tempCompletedInvoiceLines"."description" NOT LIKE 'N00%';
+  AND "v2TempCompletedInvoiceLines"."description" NOT LIKE 'N00%';
 
 // IMPORT BPS invoice lines
 
@@ -49,21 +49,21 @@ INSERT INTO "completedInvoiceLines"(
   "stateAid")
 SELECT
   "completedPaymentRequests"."completedPaymentRequestId",
-  "tempCompletedInvoiceLines"."accountCode",
-  "tempCompletedInvoiceLines"."fundCode",
-  "tempCompletedInvoiceLines".description,
-  "tempCompletedInvoiceLines".value,
-  "tempCompletedInvoiceLines"."schemeCode",
-  "tempCompletedInvoiceLines".convergence,
-  "tempCompletedInvoiceLines"."deliveryBody",
-  "tempCompletedInvoiceLines"."agreementNumber",
-  "tempCompletedInvoiceLines"."marketingYear",
-  "tempCompletedInvoiceLines"."stateAid"
-FROM "tempCompletedInvoiceLines"
+  "v2TempCompletedInvoiceLines"."accountCode",
+  "v2TempCompletedInvoiceLines"."fundCode",
+  "v2TempCompletedInvoiceLines".description,
+  "v2TempCompletedInvoiceLines".value,
+  "v2TempCompletedInvoiceLines"."schemeCode",
+  "v2TempCompletedInvoiceLines".convergence,
+  "v2TempCompletedInvoiceLines"."deliveryBody",
+  "v2TempCompletedInvoiceLines"."agreementNumber",
+  "v2TempCompletedInvoiceLines"."marketingYear",
+  "v2TempCompletedInvoiceLines"."stateAid"
+FROM "v2TempCompletedInvoiceLines"
 INNER JOIN "completedPaymentRequests"
-  ON "tempCompletedInvoiceLines"."migrationId" = "completedPaymentRequests"."migrationId"
+  ON "v2TempCompletedInvoiceLines"."migrationId" = "completedPaymentRequests"."migrationId"
 LEFT JOIN "completedInvoiceLines"
   ON "completedPaymentRequests"."completedPaymentRequestId" = "completedInvoiceLines"."completedPaymentRequestId"
 WHERE "completedInvoiceLines"."completedPaymentRequestId" IS NULL
   AND "completedPaymentRequests"."schemeId" = 6
-  AND "tempCompletedInvoiceLines"."description" NOT LIKE 'N00%';
+  AND "v2TempCompletedInvoiceLines"."description" NOT LIKE 'N00%';

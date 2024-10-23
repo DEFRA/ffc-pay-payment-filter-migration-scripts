@@ -4,7 +4,7 @@ FROM (
     SELECT l1."completedPaymentRequestId", t."fundCode"
     FROM public."completedInvoiceLines" AS l1
     JOIN public."completedPaymentRequests" AS c ON c."completedPaymentRequestId" = l1."completedPaymentRequestId"
-    JOIN public."tempDualAccounting" AS t ON c."invoiceNumber" = t."invoiceNumber"
+    JOIN public."v2TempDualAccounting" AS t ON c."invoiceNumber" = t."invoiceNumber"
 ) AS t
 WHERE l."completedPaymentRequestId" = t."completedPaymentRequestId"
 AND l."stateAid" != true;

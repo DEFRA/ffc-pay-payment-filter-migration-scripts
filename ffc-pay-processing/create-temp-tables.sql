@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public."tempPaymentRequests"
+CREATE TABLE IF NOT EXISTS public."v2TempPaymentRequests"
 (
     "migrationId" character varying(50) COLLATE pg_catalog."default",
     "schemeId" integer,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS public."tempPaymentRequests"
     "invoiceCorrectionReference" character varying(30) COLLATE pg_catalog."default"
 );
 
-CREATE TABLE IF NOT EXISTS public."tempInvoiceLines"
+CREATE TABLE IF NOT EXISTS public."v2TempInvoiceLines"
 (
     "migrationId" character varying(50) COLLATE pg_catalog."default",
     "invoiceNumber" character varying(30) COLLATE pg_catalog."default",
@@ -51,7 +51,7 @@ CREATE TABLE IF NOT EXISTS public."tempInvoiceLines"
     "stateAid" boolean DEFAULT false
 );
 
-CREATE TABLE IF NOT EXISTS public."tempCompletedPaymentRequests"
+CREATE TABLE IF NOT EXISTS public."v2TempCompletedPaymentRequests"
 (
     "migrationId" character varying(50) COLLATE pg_catalog."default",
     "inboundInvoiceNumber" character varying(30) COLLATE pg_catalog."default",
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS public."tempCompletedPaymentRequests"
     "claimDate" character varying(10) COLLATE pg_catalog."default"
 );
 
-CREATE TABLE IF NOT EXISTS public."tempCompletedInvoiceLines"
+CREATE TABLE IF NOT EXISTS public."v2TempCompletedInvoiceLines"
 (
     "migrationId" character varying(50) COLLATE pg_catalog."default",
     "inboundInvoiceNumber" character varying(30) COLLATE pg_catalog."default",
@@ -110,7 +110,7 @@ CREATE TABLE IF NOT EXISTS public."tempCompletedInvoiceLines"
     "stateAid" boolean
 );
 
-CREATE TABLE IF NOT EXISTS public."tempHoldData"
+CREATE TABLE IF NOT EXISTS public."v2TempHoldData"
 (
     frn bigint,
     "holdCategoryId" integer,
@@ -118,7 +118,7 @@ CREATE TABLE IF NOT EXISTS public."tempHoldData"
     closed timestamp without time zone
 );
 
-CREATE TABLE IF NOT EXISTS public."tempDualAccounting"
+CREATE TABLE IF NOT EXISTS public."v2TempDualAccounting"
 (
     "invoiceNumber" character varying(30) COLLATE pg_catalog."default",
     "fundCode" character varying(6) COLLATE pg_catalog."default"

@@ -13,22 +13,22 @@ INSERT INTO "invoiceLines"(
   invalid)
 SELECT
   "paymentRequests"."paymentRequestId",
-  "tempInvoiceLines"."accountCode",
-  "tempInvoiceLines"."fundCode",
-  "tempInvoiceLines".description,
-  "tempInvoiceLines".value,
-  "tempInvoiceLines"."schemeCode",
-  "tempInvoiceLines".convergence,
-  "tempInvoiceLines"."deliveryBody",
-  "tempInvoiceLines"."agreementNumber",
-  "tempInvoiceLines"."marketingYear",
-  "tempInvoiceLines"."stateAid",
+  "v2TempInvoiceLines"."accountCode",
+  "v2TempInvoiceLines"."fundCode",
+  "v2TempInvoiceLines".description,
+  "v2TempInvoiceLines".value,
+  "v2TempInvoiceLines"."schemeCode",
+  "v2TempInvoiceLines".convergence,
+  "v2TempInvoiceLines"."deliveryBody",
+  "v2TempInvoiceLines"."agreementNumber",
+  "v2TempInvoiceLines"."marketingYear",
+  "v2TempInvoiceLines"."stateAid",
   false
-FROM "tempInvoiceLines"
+FROM "v2TempInvoiceLines"
 INNER JOIN "paymentRequests"
-  ON "tempInvoiceLines"."migrationId" = "paymentRequests"."migrationId"
+  ON "v2TempInvoiceLines"."migrationId" = "paymentRequests"."migrationId"
 LEFT JOIN "invoiceLines"
   ON "paymentRequests"."paymentRequestId" = "invoiceLines"."paymentRequestId"
 WHERE "invoiceLines"."paymentRequestId" IS NULL
-  AND "tempInvoiceLines"."description" NOT LIKE 'N00%'
+  AND "v2TempInvoiceLines"."description" NOT LIKE 'N00%'
   AND "paymentRequests"."schemeId" != 7;

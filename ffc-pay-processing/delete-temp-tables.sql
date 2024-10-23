@@ -1,6 +1,6 @@
-DROP TABLE "tempPaymentRequests";
-DROP TABLE "tempInvoiceLines";
-DROP TABLE "tempCompletedPaymentRequests";
-DROP TABLE "tempCompletedInvoiceLines";
-DROP TABLE "tempHoldData";
-DROP TABLE "tempDualAccounting";
+DROP TABLE "v2TempPaymentRequests";
+DROP TABLE "v2TempInvoiceLines";
+DROP TABLE "v2TempCompletedPaymentRequests";
+DROP TABLE "v2TempCompletedInvoiceLines";
+DROP TABLE "v2TempHoldData";
+DROP TABLE "v2TempDualAccounting";

@@ -4,11 +4,11 @@ INSERT INTO holds(
   added,
   migrated)
 SELECT
-  "tempHoldData".frn,
-  "tempHoldData"."holdCategoryId",
-  "tempHoldData".added,
+  "v2TempHoldData".frn,
+  "v2TempHoldData"."holdCategoryId",
+  "v2TempHoldData".added,
   NOW()
-FROM "tempHoldData"
+FROM "v2TempHoldData"
 LEFT JOIN (
   SELECT
     frn,
@@ -16,9 +16,9 @@ LEFT JOIN (
   FROM holds
   WHERE closed IS NULL
 ) "currentHolds"
-  ON "tempHoldData".frn = "currentHolds".frn
-  AND "tempHoldData"."holdCategoryId" = "currentHolds"."holdCategoryId"
+  ON "v2TempHoldData".frn = "currentHolds".frn
+  AND "v2TempHoldData"."holdCategoryId" = "currentHolds"."holdCategoryId"
 JOIN "holdCategories"
-  ON "tempHoldData"."holdCategoryId" = "holdCategories"."holdCategoryId"
+  ON "v2TempHoldData"."holdCategoryId" = "holdCategories"."holdCategoryId"
 WHERE "currentHolds".frn IS NULL
   AND "holdCategories"."schemeId" != 7;

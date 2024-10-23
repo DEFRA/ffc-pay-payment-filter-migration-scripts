@@ -154,57 +154,57 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Execute 
     ```
-      \copy "tempPaymentRequests" FROM '/path/to/bpsHeaders.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempPaymentRequests" FROM '/path/to/bpsHeaders.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute 
     ```
-      \copy "tempPaymentRequests" FROM '/path/to/csHeaders.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempPaymentRequests" FROM '/path/to/csHeaders.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute
     ```
-      \copy "tempInvoiceLines" FROM '/path/to/bpsLines.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempInvoiceLines" FROM '/path/to/bpsLines.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute
     ```
-      \copy "tempInvoiceLines" FROM '/path/to/csLines.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempInvoiceLines" FROM '/path/to/csLines.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute
     ```
-      \copy "tempCompletedPaymentRequests" FROM '/path/to/bpsCompletedHeaders.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempCompletedPaymentRequests" FROM '/path/to/bpsCompletedHeaders.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute
     ```
-      \copy "tempCompletedPaymentRequests" FROM '/path/to/csCompletedHeaders.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempCompletedPaymentRequests" FROM '/path/to/csCompletedHeaders.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute
     ```
-      \copy "tempCompletedInvoiceLines" FROM '/path/to/bpsCompletedLines.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempCompletedInvoiceLines" FROM '/path/to/bpsCompletedLines.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute
     ```
-      \copy "tempCompletedInvoiceLines" FROM '/path/to/csCompletedLines.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempCompletedInvoiceLines" FROM '/path/to/csCompletedLines.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute
     ```
-      \copy "tempHoldData" FROM '/path/to/holdsData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempHoldData" FROM '/path/to/holdsData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute
     ```
-      \copy "tempDualAccounting" FROM '/path/to/apDualAccounting.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempDualAccounting" FROM '/path/to/apDualAccounting.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Execute
     ```
-      \copy "tempDualAccounting" FROM '/path/to/arDualAccounting.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
+      \copy "v2TempDualAccounting" FROM '/path/to/arDualAccounting.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
 1. Connect to target FFC Azure PostgreSQL server using client of choice
