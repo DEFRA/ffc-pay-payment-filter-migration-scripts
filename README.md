@@ -217,6 +217,8 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Execute [ffc-pay-processing/load-completed-payment-requests.sql](ffc-pay-processing/load-completed-payment-requests.sql)
 
+1. Confirm to Payments team that payment requests data is loaded, to help facilitate checks and reconiliation.
+
 1. Execute [ffc-pay-processing/load-completed-invoice-lines.sql](ffc-pay-processing/load-completed-invoice-lines.sql)
 
 1. Execute [ffc-pay-processing/load-holds.sql](ffc-pay-processing/load-holds.sql)
@@ -257,7 +259,7 @@ This is required as failing to apply this means that we are likely to face issue
 
 > To be performed by Payments Team
 
-1. Request settlement report from CPAT covering all BPS, CS and FDMR payments, uploaded to [Settlement Files](https://defra.sharepoint.com/sites/ea-leg-djw/DDS/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fea%2Dleg%2Ddjw%2FDDS%2FShared%20Documents%2FDDTS%20Development%20Team%2FTemporary%20Storage%20%28Files%20older%20than%2012%20months%20will%20be%20deleted%29%2FPayment%5FHub%5FData%5FSharing&p=true&ct=1708956538096&or=Teams%2DHL&ga=1)
+1. Request settlement report from CPAT covering all BPS and CS payments, uploaded to [Settlement Files](https://defra.sharepoint.com/sites/ea-leg-djw/DDS/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fea%2Dleg%2Ddjw%2FDDS%2FShared%20Documents%2FDDTS%20Development%20Team%2FTemporary%20Storage%20%28Files%20older%20than%2012%20months%20will%20be%20deleted%29%2FPayment%5FHub%5FData%5FSharing&p=true&ct=1708956538096&or=Teams%2DHL&ga=1)
 
 1. Convert received settlement reports into a CSV format. Do not change any of the content. Reupload CSV copy to above SharePoint, with names `bpsSettlementData.csv`, `fdmrSettlementData.csv` and `csSettlementData.csv`
 
@@ -265,7 +267,7 @@ This is required as failing to apply this means that we are likely to face issue
 
 > To be performed by CCoE. Will need to use `psql` client to upload data due to volume of data.
 
-1. Download settlement files `bpsSettlementData.csv`, `fdmrSettlementData.csv` and `csSettlementData.csv` from [Settlement Files](https://defra.sharepoint.com/sites/ea-leg-djw/DDS/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fea%2Dleg%2Ddjw%2FDDS%2FShared%20Documents%2FDDTS%20Development%20Team%2FTemporary%20Storage%20%28Files%20older%20than%2012%20months%20will%20be%20deleted%29%2FPayment%5FHub%5FData%5FSharing&p=true&ct=1708956538096&or=Teams%2DHL&ga=1)
+1. Download settlement files `bpsSettlementData.csv` and `csSettlementData.csv` from [Settlement Files](https://defra.sharepoint.com/sites/ea-leg-djw/DDS/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2Fea%2Dleg%2Ddjw%2FDDS%2FShared%20Documents%2FDDTS%20Development%20Team%2FTemporary%20Storage%20%28Files%20older%20than%2012%20months%20will%20be%20deleted%29%2FPayment%5FHub%5FData%5FSharing&p=true&ct=1708956538096&or=Teams%2DHL&ga=1)
 
 1. Connect to target FFC Azure PostgreSQL server using client of choice
 
@@ -289,11 +291,6 @@ This is required as failing to apply this means that we are likely to face issue
 
 1. Execute 
     ```
-      \copy "tempSettlementData" FROM '/path/to/fdmrSettlementData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
-    ```
-
-1. Execute 
-    ```
       \copy "tempSettlementData" FROM '/path/to/csSettlementData.csv' DELIMITER ',' NULL 'NULL' CSV HEADER;
     ```
 
@@ -307,7 +304,7 @@ This is required as failing to apply this means that we are likely to face issue
 
 ### Schedule processing
 
-> To be performed by CCoE.
+> To be performed by CCoE. DO NOT PROCEED WITHOUT PAYMENTS TEAM CONFIRMATION THAT DATA IS GOOD TO GO.
 
 1. Connect to target FFC Azure PostgreSQL server using client of choice
 
