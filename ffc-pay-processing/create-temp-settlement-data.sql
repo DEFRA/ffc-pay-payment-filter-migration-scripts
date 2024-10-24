@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public."tempSettlementData"
+CREATE TABLE IF NOT EXISTS public."v2TempSettlementData"
 (
     "lastSettlement" timestamp without time zone,
     "supplierno" bigint,

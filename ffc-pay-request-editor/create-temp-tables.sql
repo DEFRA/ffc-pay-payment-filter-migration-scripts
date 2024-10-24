@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public."tempDebtData"
+CREATE TABLE IF NOT EXISTS public."v2TempDebtData"
 (
     "schemeId" smallint,
     frn bigint,
