@@ -84,4 +84,4 @@ LEFT JOIN "completedPaymentRequests"
 INNER JOIN "paymentRequests"
   ON "v2TempCompletedPaymentRequests"."migrationId" = "paymentRequests"."migrationId"
 WHERE "completedPaymentRequests"."migrationId" IS NULL
-  AND "v2TempCompletedPaymentRequests" != 7;
+  AND "v2TempCompletedPaymentRequests"."schemeId" != 7;
